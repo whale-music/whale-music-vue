@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 布局缩写 */
+@layer components {
+  /* 居中 */
+  /* flex */
+  .center-flex {
+    @apply flex justify-center items-center;
+  }
+  /* absolute */
+  .center-absolute {
+    @apply absolute inset-0 m-auto;
+  }
+  /* margin */
+  .center-margin {
+    @apply block mx-auto;
+  }
+  /* transform */
+  .center-transform {
+    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+  }
+
+  /* 水平居中，评价分布 */
+  .flex-ac {
+    @apply flex justify-around items-center;
+  }
+
+  .flex-bc {
+    @apply flex justify-between items-center;
+  }
+}
