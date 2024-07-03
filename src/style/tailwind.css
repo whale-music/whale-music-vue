@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "@/shadcn/assets/index.css";
 
 /* 布局缩写 */
 @layer components {
