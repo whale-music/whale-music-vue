@@ -31,16 +31,14 @@ const links = ref([
 
 const isActive = ((name: string)=>route.name === name)
 const windowSize = useWindowSize()
-const isWideScreen = computed(()=>
-    windowSize.width.value >= 700
-)
+const isWideScreen = computed(()=>windowSize.width.value >= 700)
 </script>
 
 <template>
  <header>
    <div class="flex items-center flex-1" v-if="isWideScreen">
-    <IconamoonArrowRight2Bold class="card rotate-180" @click.native="$router.go(-1)"/>
-    <IconamoonArrowRight2Bold class="card" @click.native="$router.go(1)"/>
+      <IconamoonArrowRight2Bold class="card rotate-180" @click.native="$router.go(-1)"/>
+      <IconamoonArrowRight2Bold class="card" @click.native="$router.go(1)"/>
    </div>
      <nav class="space-x-3">
         <RouterLink v-for="i in links" :to="{name: i.name}" :key="i.name">
@@ -75,11 +73,12 @@ header {
 }
 
 .card {
-  @apply w-10 h-8
+  @apply w-10 h-8 rounded-sm
 }
 .card:hover {
-  @apply rounded-sm bg-accent
+  @apply bg-accent
 }
+
 nav {
   width: 100%;
   height: 100%;
