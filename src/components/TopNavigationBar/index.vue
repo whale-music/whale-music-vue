@@ -4,28 +4,30 @@ import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import IconamoonArrowRight2Bold from '@/assets/icon/IconamoonArrowRight2Bold.vue'
 import AvatarDropdown from '@/components/TopNavigationBar/components/AvatarDropdown.vue'
+import { useI18n } from 'vue-i18n'
 
 defineOptions({
   name: "TopNavigationBar"
 })
 
 const route = useRoute()
+const { t } = useI18n()
 const links = ref([
   {
     name: "HomePage",
-    label: "首页",
+    label: t("nav.home"),
   },
   {
     name: 'DashboardPage',
-    label: '概况',
+    label: t("nav.dashboard"),
   },
   {
     name: 'BrowsePage',
-    label: '浏览',
+    label: t("nav.browse"),
   },
   {
     name: 'LibraryPage',
-    label: '音乐库',
+    label: t("nav.library"),
   },
 ])
 
