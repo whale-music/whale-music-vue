@@ -1,0 +1,8 @@
+export { DrawerPortal, DrawerTrigger, DrawerClose } from 'vaul-vue'
+export { default as MusicPlayerDrawer } from './Drawer.vue'
+export { default as MusicPlayerDrawerOverlay } from './DrawerOverlay.vue'
+export { default as MusicPlayerDrawerContent } from './DrawerContent.vue'
+export { default as MusicPlayerDrawerHeader } from './DrawerHeader.vue'
+export { default as MusicPlayerDrawerFooter } from './DrawerFooter.vue'
+export { default as MusicPlayerDrawerTitle } from './DrawerTitle.vue'
+export { default as MusicPlayerDrawerDescription } from './DrawerDescription.vue'
