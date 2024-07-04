@@ -1,34 +1,34 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import HomePage from '@/page/HomePage/HomePage.vue'
-import DashboardPage from '@/page/DashboardPage/DashboardPage.vue'
-import BrowsePage from '@/page/BrowsePage/BrowsePage.vue'
-import LibraryPage from '@/page/LibraryPage/LibraryPage.vue'
 
 
 const routes = [
     {
         name: 'HomePage',
         path: '/',
-        component: HomePage
+        component: ()=>import('@/page/HomePage/HomePage.vue')
     },
     {
         name: 'DashboardPage',
         path: '/dashboard',
-        component: DashboardPage
+        component: ()=>import('@/page/DashboardPage/DashboardPage.vue')
     },
     {
         name: 'BrowsePage',
         path: '/browse',
-        component: BrowsePage
+        component: ()=>import('@/page/BrowsePage/BrowsePage.vue')
     },
     {
         name: 'LibraryPage',
         path: '/library',
-        component: LibraryPage
+        component: ()=>import('@/page/LibraryPage/LibraryPage.vue')
     },
 ] satisfies Readonly<RouteRecordRaw[]>
 
-export const router = createRouter({
+const router = createRouter({
     history: createWebHashHistory(),
     routes,
 })
+
+export {
+    router
+}
