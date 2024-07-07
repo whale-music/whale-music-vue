@@ -8,6 +8,9 @@ dependencies:
   '@radix-icons/vue':
     specifier: ^1.0.0
     version: 1.0.0(vue@3.4.31)
+  '@tanstack/vue-store':
+    specifier: ^0.5.4
+    version: 0.5.4(vue@3.4.31)
   '@vueuse/core':
     specifier: ^10.11.0
     version: 10.11.0(vue@3.4.31)
@@ -697,8 +700,26 @@ packages:
       tslib: 2.6.3
     dev: false
 
+  /@tanstack/store@0.5.4:
+    resolution: {integrity: sha512-EG/aGAK/yUJz0JxPaY9wOr1Sjz9Uc//BX7uY9SAo5M0GkCEz7DOSxixBq2afn/reLMGqTIGYq7TkMGgyNQgdcA==}
+    dev: false
+
   /@tanstack/virtual-core@3.8.1:
     resolution: {integrity: sha512-uNtAwenT276M9QYCjTBoHZ8X3MUeCRoGK59zPi92hMIxdfS9AyHjkDWJ94WroDxnv48UE+hIeo21BU84jKc8aQ==}
+    dev: false
+
+  /@tanstack/vue-store@0.5.4(vue@3.4.31):
+    resolution: {integrity: sha512-njHeF19elrLOINwctWO8Q9nwlLr4cQz0K/zE/Yst5Zy72leiR6ZoSjltZw1sBw+8JQYpr4/KWvQS/hQf26ceSA==}
+    peerDependencies:
+      '@vue/composition-api': ^1.2.1
+      vue: ^2.5.0 || ^3.0.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      '@tanstack/store': 0.5.4
+      vue: 3.4.31(typescript@5.5.3)
+      vue-demi: 0.14.8(vue@3.4.31)
     dev: false
 
   /@tanstack/vue-virtual@3.8.1(vue@3.4.31):
