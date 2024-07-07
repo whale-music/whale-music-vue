@@ -3,8 +3,11 @@ import TopNavigationBar from "@/components/TopNavigationBar/index.vue";
 import { useColorMode } from "@vueuse/core";
 import { ScrollArea } from "@/shadcn/components/ui/scroll-area";
 import PlayerControlsBar from "@/components/PlayerControlsBar/index.vue";
+import { storeToRefs } from "pinia";
+import { usePlayerStore } from "@/store/modules/PlayerStore.ts";
 
 useColorMode();
+const { isMusicControlBarVisible } = storeToRefs(usePlayerStore());
 </script>
 
 <template>
@@ -16,7 +19,7 @@ useColorMode();
       </div>
     </ScrollArea>
   </main>
-  <PlayerControlsBar />
+  <PlayerControlsBar v-if="isMusicControlBarVisible" />
 </template>
 
 <style lang="css" scoped>

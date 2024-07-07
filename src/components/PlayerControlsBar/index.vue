@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import MusicPlayer from "@/components/MusicPlayer/index.vue";
-import { ref } from "vue";
+import { computed } from "vue";
 import { Button } from "@/shadcn/components/ui/button";
 import MaterialSymbolsKeyboardArrowDownRounded from "@/assets/icon/MaterialSymbolsKeyboardArrowDownRounded.vue";
 import SolarRewindForwardBoldDuotone from "@/assets/icon/SolarRewindForwardBoldDuotone.vue";
-import SolarPlayBold from "@/assets/icon/SolarPlayBold.vue";
 import SolarHeartBold from "@/assets/icon/SolarHeartBold.vue";
 import SolarHeartOutline from "@/assets/icon/SolarHeartOutline.vue";
 import {
@@ -17,17 +16,34 @@ import IcRoundVolumeDown from "@/assets/icon/IcRoundVolumeDown.vue";
 import IconButton from "@/components/PlayerControlsBar/components/IconButton.vue";
 import LucideRepeat1 from "@/assets/icon/LucideRepeat1.vue";
 import { ProgressSlider } from "@//components/ProgressSlider";
+import { usePlayerStore } from "@/store/modules/PlayerStore.ts";
+import { storeToRefs } from "pinia";
+import PlayStopIconButton from "@/components/PlayerControlsBar/components/PlayStopIconButton.vue";
 
-const value = ref(false);
+const playerStore = usePlayerStore();
+// 导出函数
+const { togglePlay, toggleMusicLike, toggleMusicPlayback } = playerStore;
+// 导出响应式变量
+const { isPlayerVisible, currentMusic, musicControl } =
+  storeToRefs(playerStore);
 
-const isLike = ref(true);
+const volumeBar = computed({
+  get: () => [musicControl.value.volume],
+  set: (val) => {
+    musicControl.value.volume = val[0];
+  },
+});
 
-const progressBar = ref([50]);
-const volumeBar = ref([50]);
+const progressBar = computed({
+  get: () => [musicControl.value.progress],
+  set: (val) => {
+    musicControl.value.progress = val[0];
+  },
+});
 </script>
 
 <template>
-  <MusicPlayer v-model="value" />
+  <MusicPlayer v-model="isPlayerVisible" />
   <div class="player-controls-bar">
     <div>
       <ProgressSlider
@@ -49,13 +65,18 @@ const volumeBar = ref([50]);
         </Avatar>
         <div class="flex flex-col ml-2">
           <b class="font-bold text-sm hover:underline cursor-pointer">
-            Flower Children
+            {{ currentMusic.music.name }}
           </b>
-          <a class="text-xs opacity-50 hover:underline cursor-pointer">悠花</a>
+          <a class="text-xs opacity-50 hover:underline cursor-pointer">{{
+            currentMusic.artist.name
+          }}</a>
         </div>
         <div class="ml-8">
-          <button @click="isLike = !isLike" class="icon-button rounded-lg p-2">
-            <SolarHeartBold v-if="isLike" class="text-red-600" />
+          <button @click="toggleMusicLike" class="icon-button rounded-lg p-2">
+            <SolarHeartBold
+              v-if="currentMusic.music.isLike"
+              class="text-red-600"
+            />
             <SolarHeartOutline v-else />
           </button>
         </div>
@@ -64,9 +85,10 @@ const volumeBar = ref([50]);
         <button class="rounded-lg icon-button">
           <SolarRewindForwardBoldDuotone class="size-6 m-2 rotate-180" />
         </button>
-        <IconButton class="mx-2">
-          <SolarPlayBold class="size-8 ml-1.5 mr-2 my-2" />
-        </IconButton>
+        <PlayStopIconButton
+          @click="toggleMusicPlayback"
+          v-model="musicControl.isPlay"
+        />
         <IconButton>
           <SolarRewindForwardBoldDuotone class="size-6 m-2" />
         </IconButton>
@@ -89,7 +111,7 @@ const volumeBar = ref([50]);
             :step="1"
           />
         </div>
-        <IconButton @click="value = !value">
+        <IconButton @click="togglePlay">
           <MaterialSymbolsKeyboardArrowDownRounded
             class="size-8 text-foreground rotate-180"
           />
