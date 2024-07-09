@@ -30,7 +30,7 @@ export const usePlayerStore = defineStore("whale-player-store", () => {
 
   // 底部音乐控制栏 显示/关闭
   const isMusicControlBarVisible = computed(
-    () => playerTracks.value.length !== 0 ?? false,
+    () => playerTracks.value.length !== 0,
   );
 
   // 下一首
