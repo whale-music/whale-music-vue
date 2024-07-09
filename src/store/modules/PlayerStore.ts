@@ -1,4 +1,4 @@
-import { defineStore } from "pinia";
+import { defineStore, storeToRefs } from "pinia";
 import { computed, reactive, ref } from "vue";
 
 /**
@@ -75,3 +75,7 @@ export const usePlayerStore = defineStore("whale-player-store", () => {
     toggleMusicPlayback,
   };
 });
+
+export function useRefPlayerStore() {
+  return storeToRefs(usePlayerStore());
+}
