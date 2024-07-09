@@ -44,7 +44,7 @@ const isWideScreen = computed(()=>windowSize.width.value >= 700)
    </div>
      <nav class="space-x-3">
         <RouterLink v-for="i in links" :to="{name: i.name}" :key="i.name">
-          <a class="rounded-sm hover:bg-accent py-1.5 px-2.5" :class="{ 'text-primary': isActive(i.name) }">{{ i.label }}</a>
+          <a class="rounded-sm hover:bg-accent py-1.5 px-2.5" :class="{ 'text-primary': isActive(i.name), 'font-extrabold': isActive(i.name), 'font-semibold': !isActive(i.name)}">{{ i.label }}</a>
         </RouterLink>
      </nav>
    <div v-if="isWideScreen">
@@ -69,7 +69,7 @@ header {
   padding-left: 10vw;
   backdrop-filter: saturate(180%) blur(20px);
 
-  color: hsl(var(--foreground) / 0.8);
+  color: hsl(var(--foreground) / 0.7);
   background-color: hsl(var(--background) / 0.8);
   z-index: 20;
 }
@@ -93,7 +93,6 @@ nav {
 
 a {
   font-size: 1.2rem;
-  font-weight: 700;
   text-wrap: nowrap;
   text-decoration: none;
 }
