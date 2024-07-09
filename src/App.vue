@@ -3,22 +3,28 @@ import TopNavigationBar from "@/components/TopNavigationBar/index.vue";
 import { useColorMode } from "@vueuse/core";
 import { ScrollArea } from "@/shadcn/components/ui/scroll-area";
 import PlayerControlsBar from "@/components/PlayerControlsBar/index.vue";
-import { storeToRefs } from "pinia";
-import { usePlayerStore } from "@/store/modules/PlayerStore.ts";
+import { useRefPlayerStore } from "@/store/modules/PlayerStore.ts";
+import { GlobalLoading } from "@/components/GlobalLoading";
+import { useRefGlobalStore } from "@/store/modules/GlobalStore.ts";
 
 useColorMode();
-const { isMusicControlBarVisible } = storeToRefs(usePlayerStore());
+const { isMusicControlBarVisible } = useRefPlayerStore();
+const { globalLoading } = useRefGlobalStore();
 </script>
 
 <template>
   <TopNavigationBar />
-  <main>
+  <main v-if="globalLoading">
     <ScrollArea class="h-full w-full">
       <div class="custom-padding">
         <RouterView />
       </div>
     </ScrollArea>
   </main>
+  <GlobalLoading
+    v-else
+    class="center-absolute flex justify-center items-center"
+  />
   <PlayerControlsBar v-if="isMusicControlBarVisible" />
 </template>
 
