@@ -2,7 +2,7 @@ import { defineStore, storeToRefs } from "pinia";
 import { ref } from "vue";
 
 export const useGlobalStore = defineStore("whale-global-store", () => {
-  const globalLoading = ref(false);
+  const globalLoading = ref(true);
   const setGlobalLoading = (val: boolean) => {
     globalLoading.value = val;
   };
