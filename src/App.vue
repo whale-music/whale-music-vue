@@ -14,7 +14,7 @@ const { globalLoading } = useRefGlobalStore();
 
 <template>
   <TopNavigationBar />
-  <main v-if="globalLoading">
+  <main v-show="globalLoading">
     <ScrollArea class="h-full w-full">
       <div class="custom-padding">
         <RouterView />
@@ -22,7 +22,7 @@ const { globalLoading } = useRefGlobalStore();
     </ScrollArea>
   </main>
   <GlobalLoading
-    v-else
+    v-if="!globalLoading"
     class="center-absolute flex justify-center items-center"
   />
   <PlayerControlsBar v-if="isMusicControlBarVisible" />

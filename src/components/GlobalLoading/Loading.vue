@@ -1,48 +1,25 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { computed, ref } from "vue";
+import TextCardLoading from "./TextCardLoading.vue";
+import SilentLion21Loading from "@/components/GlobalLoading/SilentLion21Loading.vue";
+
+const loading = ref("SilentLion21Loading");
+
+const getLoadingComponent = computed(() => {
+  if (loading.value === "SilentLion21Loading") {
+    return SilentLion21Loading;
+  } else if (loading.value === "TextCardLoading") {
+    return TextCardLoading;
+  } else {
+    return SilentLion21Loading;
+  }
+});
+</script>
 
 <template>
-  <div>
-    <div class="loader">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </div>
+  <div class="flex flex-col">
+    <Component :is="getLoadingComponent" />
   </div>
 </template>
 
-<style scoped>
-.loader {
-  display: flex;
-  align-items: center;
-}
-
-.bar {
-  display: inline-block;
-  width: 3px;
-  height: 20px;
-  background-color: hsl(var(--foreground) / 0.5);
-  border-radius: 10px;
-  animation: scale-up4 1s linear infinite;
-}
-
-.bar:nth-child(2) {
-  height: 35px;
-  margin: 0 5px;
-  animation-delay: 0.25s;
-}
-
-.bar:nth-child(3) {
-  animation-delay: 0.5s;
-}
-
-@keyframes scale-up4 {
-  20% {
-    background-color: hsl(var(--foreground));
-    transform: scaleY(1.5);
-  }
-
-  40% {
-    transform: scaleY(1);
-  }
-}
-</style>
+<style scoped></style>
