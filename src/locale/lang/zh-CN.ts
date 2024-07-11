@@ -6,6 +6,14 @@ export default {
     library: '音乐库',
     search: '搜索',
   },
+  browse: {
+    playlist: "歌单",
+    music: "音乐",
+    album: "专辑",
+    artist: "歌手",
+    mv: "MV",
+    tag: "Tag",
+  },
   settings: {
     settings: '设置',
     logout: '登出',
