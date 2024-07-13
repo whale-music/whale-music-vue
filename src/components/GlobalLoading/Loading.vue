@@ -3,7 +3,7 @@ import { computed, ref } from "vue";
 import TextCardLoading from "./TextCardLoading.vue";
 import SilentLion21Loading from "@/components/GlobalLoading/SilentLion21Loading.vue";
 
-const loading = ref("SilentLion21Loading");
+const loading = ref("TextCardLoading");
 
 const getLoadingComponent = computed(() => {
   if (loading.value === "SilentLion21Loading") {
