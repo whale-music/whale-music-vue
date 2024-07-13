@@ -2,7 +2,7 @@
 import { CoverCard } from "@/components/CoverCard";
 
 defineOptions({
-  name: "TabAlbum",
+  name: "TabPlayList",
 });
 </script>
 
