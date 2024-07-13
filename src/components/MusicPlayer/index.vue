@@ -7,7 +7,6 @@ import {
   MusicPlayerDrawerDescription,
   DrawerClose,
 } from "@/components/MusicPlayer/components/MusicPlayerDrawer";
-import { Button } from "@/shadcn/components/ui/button";
 import MaterialSymbolsKeyboardArrowDownRounded from "@/assets/icon/MaterialSymbolsKeyboardArrowDownRounded.vue";
 
 defineOptions({

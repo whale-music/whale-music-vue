@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import MusicPlayer from "@/components/MusicPlayer/index.vue";
 import { computed } from "vue";
-import { Button } from "@/shadcn/components/ui/button";
 import MaterialSymbolsKeyboardArrowDownRounded from "@/assets/icon/MaterialSymbolsKeyboardArrowDownRounded.vue";
 import SolarRewindForwardBoldDuotone from "@/assets/icon/SolarRewindForwardBoldDuotone.vue";
 import SolarHeartBold from "@/assets/icon/SolarHeartBold.vue";
