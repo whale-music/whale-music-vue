@@ -16,6 +16,7 @@ export default {
   },
   settings: {
     settings: '设置',
+    refresh: '刷新',
     logout: '登出',
     language: '语言',
     lyric: {

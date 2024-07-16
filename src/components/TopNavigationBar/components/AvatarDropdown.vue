@@ -22,9 +22,8 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/shadcn/components/ui/avat
       <DropdownMenuLabel>My Account</DropdownMenuLabel>
       <DropdownMenuSeparator />
       <DropdownMenuItem>{{ $t("settings.settings") }}</DropdownMenuItem>
-      <DropdownMenuItem>Billing</DropdownMenuItem>
-      <DropdownMenuItem>Team</DropdownMenuItem>
-      <DropdownMenuItem>Subscription</DropdownMenuItem>
+      <DropdownMenuItem>{{ $t("settings.refresh") }}</DropdownMenuItem>
+      <DropdownMenuItem>{{ $t("settings.logout") }}</DropdownMenuItem>
     </DropdownMenuContent>
   </DropdownMenu>
 </template>
