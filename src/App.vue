@@ -3,12 +3,12 @@ import TopNavigationBar from "@/components/TopNavigationBar/index.vue";
 import { useColorMode } from "@vueuse/core";
 import { ScrollArea } from "@/shadcn/components/ui/scroll-area";
 import PlayerControlsBar from "@/components/PlayerControlsBar/index.vue";
-import { useRefPlayerStore } from "@/store/modules/PlayerStore.ts";
+import { usePlayerStore } from "@/store/modules/TrackPlayerStore.ts";
 import { GlobalLoading } from "@/components/GlobalLoading";
 import { useRefGlobalStore } from "@/store/modules/GlobalStore.ts";
 
 useColorMode();
-const { isMusicControlBarVisible } = useRefPlayerStore();
+const playerStore = usePlayerStore();
 const { globalLoading } = useRefGlobalStore();
 </script>
 
@@ -25,7 +25,7 @@ const { globalLoading } = useRefGlobalStore();
     v-if="!globalLoading"
     class="center-absolute flex justify-center items-center"
   />
-  <PlayerControlsBar v-if="isMusicControlBarVisible" />
+  <PlayerControlsBar v-if="playerStore.isMusicControlBarVisible" />
 </template>
 
 <style lang="css" scoped>

@@ -7,12 +7,17 @@ defineOptions({
   name: "PlayStopIconButton",
 });
 const value = defineModel();
+const emits = defineEmits(["play", "pause"]);
+const play = () => emits("play");
+const pause = () => emits("pause");
 </script>
 
 <template>
-  <IconButton class="mx-2">
-    <SolarStopCircleBold class="size-8 ml-1.5 mr-2 my-2" v-if="value" />
-    <SolarPlayBold class="size-8 ml-1.5 mr-2 my-2" v-else />
+  <IconButton class="mx-2" v-if="value" @click="play()">
+    <SolarPlayBold class="size-8 ml-1.5 mr-2 my-2" />
+  </IconButton>
+  <IconButton class="mx-2" @click="pause()" v-else>
+    <SolarStopCircleBold class="size-8 ml-1.5 mr-2 my-2" />
   </IconButton>
 </template>
 
