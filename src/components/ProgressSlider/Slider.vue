@@ -33,7 +33,7 @@ const isHovered = ref(false);
     @mouseleave="isHovered = false"
     :class="
       cn(
-        'relative flex w-full touch-none select-none items-center',
+        'relative flex w-full touch-none select-none items-center cursor-pointer',
         props.class,
       )
     "
