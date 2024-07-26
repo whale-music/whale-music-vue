@@ -49,11 +49,13 @@ const bufferPercentage = computed(() => {
           <AvatarFallback>M</AvatarFallback>
         </Avatar>
         <div class="flex flex-col ml-2">
-          <b class="font-bold text-sm hover:underline cursor-pointer">
+          <b
+            class="font-bold text-sm hover:underline cursor-pointer truncate w-12 md:w-24 lg:w-full"
+          >
             {{ playerStore.currentAudio.music.name }}
           </b>
           <a
-            class="text-xs opacity-50 hover:underline cursor-pointer"
+            class="text-xs opacity-50 hover:underline cursor-pointer truncate w-12 md:w-24 lg:w-full"
             v-for="i in playerStore.currentAudio.artist"
           >
             {{ i.name }}
