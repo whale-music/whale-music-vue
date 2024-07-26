@@ -32,7 +32,10 @@ export interface MusicData {
   music: Music;
   album: Album;
   artist: Artist[];
-  source: Source[];
+  source: {
+    load: number;
+    list: Source[];
+  };
 }
 
 type AudioLoadType =
@@ -83,13 +86,16 @@ export const usePlayerStore = defineStore("whale-player-store", () => {
           name: "Luna Azure",
         },
       ],
-      source: [
-        {
-          id: 123,
-          url: "https://96.f.1ting.com/local_to_cube_202004121813/96kmp3/2024/04/25/25e_lzx/01.mp3",
-          size: 34325,
-        },
-      ],
+      source: {
+        load: 1,
+        list: [
+          {
+            id: 123,
+            url: "https://96.f.1ting.com/local_to_cube_202004121813/96kmp3/2024/04/25/25e_lzx/01.mp3",
+            size: 34325,
+          },
+        ],
+      },
     },
   ]);
 
@@ -211,14 +217,24 @@ export const usePlayerStore = defineStore("whale-player-store", () => {
     }
   };
 
-  function loadAudio() {
+  function loadAudio(loadIndex?: number) {
     // 尝试初始化
     if (
       playerTrack &&
       playerTrack.value.length &&
       playerTrack.value.length !== 0
     ) {
-      audioPlayer.loadAudio(audioLoadHandle(currentAudio.value.source).url);
+      // 如果没有指定source则自动根据默认的规则加载
+      if (
+        loadIndex !== undefined &&
+        currentAudio.value.source.list[loadIndex]
+      ) {
+        audioPlayer.loadAudio(currentAudio.value.source.list[loadIndex].url);
+      } else {
+        audioPlayer.loadAudio(
+          audioLoadHandle(currentAudio.value.source.list).url,
+        );
+      }
     }
   }
   /***************************/
@@ -316,7 +332,10 @@ export const usePlayerStore = defineStore("whale-player-store", () => {
   // Controlling the Queue
   // Skip to a specific track index:
   const skip = (trackIndex: number) => {
-    if (trackIndex !== undefined && playerTrack.value[trackIndex] !== undefined) {
+    if (
+      trackIndex !== undefined &&
+      playerTrack.value[trackIndex] !== undefined
+    ) {
       musicControl.currentIndex = trackIndex;
       loadAudio();
     }
@@ -330,6 +349,7 @@ export const usePlayerStore = defineStore("whale-player-store", () => {
     toggleMusicLike,
   };
 
+  loadAudio();
   return {
     ...computationalAttribute,
     ...player,
