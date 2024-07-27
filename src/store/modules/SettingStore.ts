@@ -11,6 +11,10 @@ export const useSettingStore = defineStore("whale-setting-store", () => {
     language: navigator.language,
     musicQuality: 'min-size',
     playInterface: 'default',
+    performance: {
+      topBlur: true,
+      bottomBlur: true,
+    }
   });
 
   const appearance = computed({

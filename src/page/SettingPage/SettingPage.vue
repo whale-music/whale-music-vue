@@ -85,10 +85,10 @@ console.log(settings.language);
       <!-- 性能 -->
       <Menu :title="$t('settings.performance.text')">
         <MenuItem :label="$t('settings.performance.topBar')">
-          <Switch />
+          <Switch v-model:checked="settings.state.performance.topBlur" />
         </MenuItem>
         <MenuItem :label="$t('settings.performance.bottomBar')">
-          <Switch />
+          <Switch v-model:checked="settings.state.performance.bottomBlur" />
         </MenuItem>
         <MenuItem :label="$t('settings.performance.playInterface.text')">
           <Select v-model="settings.state.playInterface">

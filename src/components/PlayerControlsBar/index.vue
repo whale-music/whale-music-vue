@@ -18,17 +18,23 @@ import { usePlayerStore } from "@/store/modules/TrackPlayerStore.ts";
 import PlayStopIconButton from "@/components/PlayerControlsBar/components/PlayStopIconButton.vue";
 import { PlaybackProgressSlider } from "@/components/PlayerControlsBar/components/PlaybackProgressSlider";
 import { computed } from "vue";
+import { useSettingStore } from "@/store/modules/SettingStore.ts";
 
 const playerStore = usePlayerStore();
 
 const bufferPercentage = computed(() => {
   return `${(playerStore.musicControl.bufferProgress / playerStore.musicControl.duration) * 100}%`;
 });
+
+const settingStore = useSettingStore();
 </script>
 
 <template>
   <MusicPlayer v-model="playerStore.isPlayerDetailVisible" />
-  <div class="player-controls-bar">
+  <div
+    class="player-controls-bar"
+    :class="{ 'background-blur': settingStore.state.performance.bottomBlur }"
+  >
     <div>
       <PlaybackProgressSlider
         v-model="playerStore.progressPlayBack"
@@ -131,9 +137,13 @@ const bufferPercentage = computed(() => {
   flex-direction: column;
   justify-content: space-around;
   height: 64px;
-  backdrop-filter: saturate(180%) blur(30px);
-  background-color: var(--background);
+
+  background-color: hsl(var(--background));
   z-index: 50;
+}
+.background-blur {
+  backdrop-filter: saturate(180%) blur(30px);
+  background-color: hsl(var(--background) / 0.86);
 }
 .control {
   display: grid;

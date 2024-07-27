@@ -5,6 +5,7 @@ import { useRoute } from "vue-router";
 import IconamoonArrowRight2Bold from "@/assets/icon/IconamoonArrowRight2Bold.vue";
 import AvatarDropdown from "@/components/TopNavigationBar/components/AvatarDropdown.vue";
 import { useI18n } from "vue-i18n";
+import { useSettingStore } from "@/store/modules/SettingStore.ts";
 
 defineOptions({
   name: "TopNavigationBar",
@@ -34,10 +35,12 @@ const links = ref([
 const isActive = (name: string) => route.name === name;
 const windowSize = useWindowSize();
 const isWideScreen = computed(() => windowSize.width.value >= 700);
+
+const settings = useSettingStore()
 </script>
 
 <template>
-  <header>
+  <header :class="{'background-blur': settings.state.performance.topBlur}">
     <div class="flex items-center flex-1" v-if="isWideScreen">
       <IconamoonArrowRight2Bold
         class="card rotate-180"
@@ -77,11 +80,14 @@ header {
 
   padding-right: 10vw;
   padding-left: 10vw;
-  backdrop-filter: saturate(180%) blur(20px);
 
   color: hsl(var(--foreground) / 0.7);
-  background-color: hsl(var(--background) / 0.8);
+  background-color: hsl(var(--background));
   z-index: 20;
+}
+.background-blur {
+  backdrop-filter: saturate(180%) blur(20px);
+  background-color: hsl(var(--background) / 0.86);
 }
 
 .card {
