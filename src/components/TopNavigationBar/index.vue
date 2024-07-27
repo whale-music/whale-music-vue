@@ -1,58 +1,68 @@
 <script setup lang="ts">
-import { useWindowSize } from '@vueuse/core';
-import { computed, ref } from 'vue'
-import { useRoute } from 'vue-router'
-import IconamoonArrowRight2Bold from '@/assets/icon/IconamoonArrowRight2Bold.vue'
-import AvatarDropdown from '@/components/TopNavigationBar/components/AvatarDropdown.vue'
-import { useI18n } from 'vue-i18n'
+import { useWindowSize } from "@vueuse/core";
+import { computed, ref } from "vue";
+import { useRoute } from "vue-router";
+import IconamoonArrowRight2Bold from "@/assets/icon/IconamoonArrowRight2Bold.vue";
+import AvatarDropdown from "@/components/TopNavigationBar/components/AvatarDropdown.vue";
+import { useI18n } from "vue-i18n";
 
 defineOptions({
-  name: "TopNavigationBar"
-})
+  name: "TopNavigationBar",
+});
 
-const route = useRoute()
-const { t } = useI18n()
+const route = useRoute();
+const { t } = useI18n();
 const links = ref([
   {
     name: "HomePage",
     label: t("nav.home"),
   },
   {
-    name: 'DashboardPage',
+    name: "DashboardPage",
     label: t("nav.dashboard"),
   },
   {
-    name: 'BrowsePage',
+    name: "BrowsePage",
     label: t("nav.browse"),
   },
   {
-    name: 'LibraryPage',
+    name: "LibraryPage",
     label: t("nav.library"),
   },
-])
+]);
 
-const isActive = ((name: string)=>route.name === name)
-const windowSize = useWindowSize()
-const isWideScreen = computed(()=>windowSize.width.value >= 700)
+const isActive = (name: string) => route.name === name;
+const windowSize = useWindowSize();
+const isWideScreen = computed(() => windowSize.width.value >= 700);
 </script>
 
 <template>
- <header>
-   <div class="flex items-center flex-1" v-if="isWideScreen">
-      <IconamoonArrowRight2Bold class="card rotate-180" @click.native="$router.go(-1)"/>
-      <IconamoonArrowRight2Bold class="card" @click.native="$router.go(1)"/>
-   </div>
-     <nav class="space-x-3">
-        <RouterLink v-for="i in links" :to="{name: i.name}" :key="i.name">
-          <a class="rounded-sm hover:bg-accent py-1.5 px-2.5 transition-colors duration-150 ease-in" :class="{ 'text-primary': isActive(i.name), 'font-extrabold': isActive(i.name), 'font-semibold': !isActive(i.name)}">{{ i.label }}</a>
-        </RouterLink>
-     </nav>
-   <div v-if="isWideScreen">
-     <AvatarDropdown />
-   </div>
- </header>
+  <header>
+    <div class="flex items-center flex-1" v-if="isWideScreen">
+      <IconamoonArrowRight2Bold
+        class="card rotate-180"
+        @click.native="$router.go(-1)"
+      />
+      <IconamoonArrowRight2Bold class="card" @click.native="$router.go(1)" />
+    </div>
+    <nav class="space-x-3">
+      <RouterLink v-for="i in links" :to="{ name: i.name }" :key="i.name">
+        <a
+          class="rounded-sm hover:bg-accent py-1.5 px-2.5 transition-colors duration-150 ease-in"
+          :class="{
+            'text-primary': isActive(i.name),
+            'font-extrabold': isActive(i.name),
+            'font-semibold': !isActive(i.name),
+          }"
+          >{{ i.label }}</a
+        >
+      </RouterLink>
+    </nav>
+    <div v-if="isWideScreen">
+      <AvatarDropdown />
+    </div>
+  </header>
 </template>
-
 
 <style scoped>
 header {
@@ -75,10 +85,10 @@ header {
 }
 
 .card {
-  @apply w-10 h-8 rounded-sm
+  @apply w-10 h-8 rounded-sm;
 }
 .card:hover {
-  @apply bg-accent
+  @apply bg-accent;
 }
 
 nav {
@@ -88,7 +98,7 @@ nav {
   justify-content: center;
   align-items: center;
 
-  padding: 0 max(5vw,90px);
+  padding: 0 max(5vw, 90px);
 }
 
 a {
