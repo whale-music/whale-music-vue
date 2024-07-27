@@ -3,7 +3,7 @@ export default {
     home: "Home",
     dashboard: "Dashboard",
     browse: "Browse",
-    library: "Music Library",
+    library: "Library",
     search: "Search",
   },
   browse: {
