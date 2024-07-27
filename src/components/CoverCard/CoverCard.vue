@@ -38,7 +38,7 @@ const focus = ref(false);
         <AvatarFallback>M</AvatarFallback>
       </Avatar>
       <Transition name="fade">
-        <div class="absolute inset-0 bg-black bg-opacity-35" v-show="focus">
+        <div class="absolute inset-0 bg-black/35 will-change-[filter, opciaty]" v-if="focus">
           <div class="absolute left-2 bottom-2">
             <button>
               <span
@@ -69,11 +69,11 @@ const focus = ref(false);
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.3s ease-in;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .fade-enter-from,
 .fade-leave-to {
-  opacity: 0;
+  @apply bg-black/5;
 }
 </style>
