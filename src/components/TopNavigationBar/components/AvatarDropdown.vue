@@ -30,7 +30,9 @@ import {
           {{ $t("settings.settings") }}
         </DropdownMenuItem>
       </RouterLink>
-      <DropdownMenuItem>{{ $t("settings.refresh") }}</DropdownMenuItem>
+      <DropdownMenuItem @click="$router.go(0)">{{
+        $t("settings.refresh")
+      }}</DropdownMenuItem>
       <DropdownMenuItem>{{ $t("settings.logout") }}</DropdownMenuItem>
     </DropdownMenuContent>
   </DropdownMenu>
