@@ -51,7 +51,7 @@ const likeMusic = [
     </div>
     <div class="h-60 flex gap-x-6 my-8">
       <div
-        class="bg-primary/10 basis-1/3 h-60 rounded-lg px-6 py-4 flex flex-col cursor-pointer"
+        class="bg-primary/10 basis-1/3 h-60 rounded-lg px-6 py-4 flex flex-col "
       >
         <span class="text-lg flex-1 text-primary">
           {{ likeMusic[0].lyrics }}
@@ -62,7 +62,7 @@ const likeMusic = [
             <span class="text-base">123 首歌</span>
           </div>
           <div
-            class="rounded-full h-full bg-primary text-primary-foreground aspect-square flex justify-center items-center"
+            class="rounded-full h-full bg-primary text-primary-foreground aspect-square flex justify-center items-center cursor-pointer"
           >
             <SolarPlayBold class="size-5/12" />
           </div>
