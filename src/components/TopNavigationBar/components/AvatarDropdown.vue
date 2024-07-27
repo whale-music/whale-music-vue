@@ -6,28 +6,34 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/shadcn/components/ui/dropdown-menu'
-import { Avatar, AvatarFallback, AvatarImage } from '@/shadcn/components/ui/avatar'
+} from "@/shadcn/components/ui/dropdown-menu";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/shadcn/components/ui/avatar";
 </script>
 
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger>
       <Avatar>
-        <AvatarImage src="./user.svg" alt="@radix-vue" class="opacity-60"/>
+        <AvatarImage src="./user.svg" alt="@radix-vue" class="opacity-60" />
         <AvatarFallback>U</AvatarFallback>
       </Avatar>
     </DropdownMenuTrigger>
     <DropdownMenuContent>
-      <DropdownMenuLabel>My Account</DropdownMenuLabel>
+      <DropdownMenuLabel>Account</DropdownMenuLabel>
       <DropdownMenuSeparator />
-      <DropdownMenuItem>{{ $t("settings.settings") }}</DropdownMenuItem>
+      <RouterLink :to="{ name: 'SettingPage' }">
+        <DropdownMenuItem>
+          {{ $t("settings.settings") }}
+        </DropdownMenuItem>
+      </RouterLink>
       <DropdownMenuItem>{{ $t("settings.refresh") }}</DropdownMenuItem>
       <DropdownMenuItem>{{ $t("settings.logout") }}</DropdownMenuItem>
     </DropdownMenuContent>
   </DropdownMenu>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

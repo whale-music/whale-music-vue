@@ -22,6 +22,11 @@ const routes = [
         path: '/library',
         component: ()=>import('@/page/LibraryPage/LibraryPage.vue')
     },
+    {
+        name: 'SettingPage',
+        path: '/setting',
+        component: ()=>import('@/page/SettingPage/SettingPage.vue')
+    },
 ] satisfies Readonly<RouteRecordRaw[]>
 
 const router = createRouter({
