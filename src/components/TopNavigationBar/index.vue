@@ -15,19 +15,19 @@ const { t } = useI18n();
 const links = ref([
   {
     name: "HomePage",
-    label: t("nav.home"),
+    label: computed(()=>t("nav.home")),
   },
   {
     name: "DashboardPage",
-    label: t("nav.dashboard"),
+    label: computed(()=>t("nav.dashboard")),
   },
   {
     name: "BrowsePage",
-    label: t("nav.browse"),
+    label: computed(()=>t("nav.browse")),
   },
   {
     name: "LibraryPage",
-    label: t("nav.library"),
+    label: computed(()=>t("nav.library")),
   },
 ]);
 
