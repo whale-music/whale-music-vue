@@ -42,7 +42,7 @@ const focus = ref(false);
           <div class="absolute left-2 bottom-2">
             <button>
               <span
-                class="size-9 flex justify-center items-center rounded-full bg-background/10 backdrop-blur hover:bg-foreground/20 border border-foreground/10"
+                class="size-9 flex justify-center items-center rounded-full bg-background/10 backdrop-blur hover:bg-foreground/20 border border-foreground/10 text-neutral-50"
               >
                 <SolarPlayBold />
               </span>
@@ -51,7 +51,7 @@ const focus = ref(false);
           <div class="absolute right-2 bottom-2">
             <button>
               <span
-                class="size-9 flex justify-center items-center rounded-full bg-background/10 backdrop-blur hover:bg-foreground/20 border border-foreground/10"
+                class="size-9 flex justify-center items-center rounded-full bg-background/10 backdrop-blur hover:bg-foreground/20 border border-foreground/10 text-neutral-50"
               >
                 <AkarIconsMoreHorizontal />
               </span>
