@@ -20,6 +20,9 @@ export default {
     refresh: "刷新",
     logout: "登出",
     language: "语言",
+    myLikeMusic: "我喜欢的音乐",
+    myLibrary: "{0}的音乐库",
+    likeCount: "{0}首音乐",
     musicQuality: {
       text: "音质",
       low: "普通",

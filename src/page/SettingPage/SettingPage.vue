@@ -11,14 +11,16 @@ import {
 } from "@/shadcn/components/ui/select";
 import { useSettingStore } from "@/store/modules/SettingStore.ts";
 import { Switch } from "@/shadcn/components/ui/switch";
+import { useUserStore } from "@/store/modules/UserStore.ts";
 const settings = useSettingStore();
-console.log(settings.language);
+
+const userStore = useUserStore();
 </script>
 
 <template>
   <div class="flex justify-center">
     <div class="basis-2/3 space-y-4">
-      <UserCard />
+      <UserCard v-if="!userStore.isLogin" />
       <!-- 通用 -->
       <Menu :title="$t('settings.general')">
         <MenuItem :label="$t('settings.appearance.text')">
