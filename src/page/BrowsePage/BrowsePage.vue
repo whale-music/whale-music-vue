@@ -57,7 +57,7 @@ const router = useRouter();
 const tabs = ref();
 
 watch(tabs, (newVal) => {
-  router.push({ name: "BrowsePage", query: { tab: newVal } });
+  router.push({ name: "BrowsePage", params: { tab: newVal } });
 });
 </script>
 
@@ -65,7 +65,7 @@ watch(tabs, (newVal) => {
   <div>
     <h1 class="text-5xl font-semibold my-8">{{ $t("nav.browse") }}</h1>
     <ReTabs
-      :default-value="($route.query?.tab as string) ?? 'playlist'"
+      :default-value="($route.params.tab[0] as string) ?? 'playlist'"
       class="w-full"
       v-model="tabs"
     >

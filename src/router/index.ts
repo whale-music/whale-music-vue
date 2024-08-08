@@ -14,7 +14,7 @@ const routes = [
     },
     {
         name: 'BrowsePage',
-        path: '/browse',
+        path: '/browse/:tab(.*)*',
         component: ()=>import('@/page/BrowsePage/BrowsePage.vue')
     },
     {
