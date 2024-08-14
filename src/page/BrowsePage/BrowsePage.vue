@@ -12,8 +12,8 @@ import TabAlbum from "@/page/BrowsePage/components/TabAlbum/index.vue";
 import TabArtist from "@/page/BrowsePage/components/TabArtist/index.vue";
 import TabMV from "@/page/BrowsePage/components/TabMV/index.vue";
 import TabTag from "@/page/BrowsePage/components/TabTag/index.vue";
-import { ref, watch } from "vue";
-import { useRouter } from "vue-router";
+import { computed, ref, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
 
 defineOptions({
   name: "BrowsePage",
@@ -54,18 +54,25 @@ const tabsList = [
 ];
 
 const router = useRouter();
+const route = useRoute()
 const tabs = ref();
 
 watch(tabs, (newVal) => {
   router.push({ name: "BrowsePage", params: { tab: newVal } });
 });
+const defaultValue= computed(()=>{
+  if (!(route.params && route.params?.tab)) {
+    return undefined;
+  }
+  return route.params.tab[0];
+})
 </script>
 
 <template>
   <div>
     <h1 class="text-5xl font-semibold my-8">{{ $t("nav.browse") }}</h1>
     <ReTabs
-      :default-value="($route.params.tab[0] as string) ?? 'playlist'"
+      :default-value="defaultValue ?? 'playlist'"
       class="w-full"
       v-model="tabs"
     >
