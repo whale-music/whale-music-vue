@@ -38,7 +38,7 @@ const focus = ref(false);
         <AvatarFallback>M</AvatarFallback>
       </Avatar>
       <Transition name="fade">
-        <div class="absolute inset-0 bg-black/35 will-change-[filter, opciaty]" v-if="focus">
+        <div class="absolute inset-0 bg-black/35 will-change-[filter, opciaty] rounded" v-if="focus">
           <div class="absolute left-2 bottom-2">
             <button>
               <span
