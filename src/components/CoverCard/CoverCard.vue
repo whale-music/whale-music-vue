@@ -33,12 +33,12 @@ const focus = ref(false);
     @mouseleave="focus = false"
   >
     <div class="w-full aspect-square relative">
-      <Avatar class="size-full object-cover rounded cursor-pointer">
+      <Avatar class="size-full object-cover rounded-lg cursor-pointer">
         <AvatarImage :src="src" alt="@radix-vue" />
         <AvatarFallback>M</AvatarFallback>
       </Avatar>
       <Transition name="fade">
-        <div class="absolute inset-0 bg-black/35 will-change-[filter, opciaty] rounded" v-if="focus">
+        <div class="absolute inset-0 bg-black/35 will-change-[filter, opciaty] rounded-lg" v-if="focus">
           <div class="absolute left-2 bottom-2">
             <button>
               <span
