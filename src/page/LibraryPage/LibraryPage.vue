@@ -6,7 +6,7 @@ import {
   ReTabsList,
   ReTabsTrigger,
 } from "@/components/ReTabs";
-import { computed, inject, Ref, ref, watch } from "vue";
+import { computed, inject, onMounted, Ref, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import LibraryTabPlayList from "@/page/LibraryPage/components/Tabs/LibraryTabPlayList.vue";
@@ -22,11 +22,19 @@ defineOptions({
   name: "LibraryPage",
 });
 
+// Rolling distance
+const top = 375;
+
 const router = useRouter();
 const route = useRoute();
 const tabs = ref();
 
 const { t } = useI18n();
+
+const scrollAreaRoot =
+  inject<Ref<InstanceType<typeof ScrollAreaViewport> | undefined>>(
+    scrollAreaRootKey,
+  );
 
 const tabsList = [
   {
@@ -64,13 +72,16 @@ const defaultValue = computed(() => {
   if (!(route.params && route.params?.tab)) {
     return undefined;
   }
-  return route.params.tab[0];
+  return route.params.tab?.[0];
 });
 
-const scrollAreaRoot =
-  inject<Ref<InstanceType<typeof ScrollAreaViewport> | undefined>>(
-    scrollAreaRootKey,
-  );
+
+onMounted(() => {
+  const value = route?.params?.tab?.[0];
+  if (value) {
+    ContainerRollingUtil.scrollTo({ el: scrollAreaRoot?.value, top });
+  }
+});
 </script>
 
 <template>
@@ -86,7 +97,7 @@ const scrollAreaRoot =
           :value="i.value"
           v-for="i in tabsList"
           @click="
-            ContainerRollingUtil.scrollTo({ el: scrollAreaRoot, top: 375 })
+            ContainerRollingUtil.scrollTo({ el: scrollAreaRoot, top })
           "
           :key="i.value"
         >

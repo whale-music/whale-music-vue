@@ -12,8 +12,11 @@ import TabAlbum from "@/page/BrowsePage/components/TabAlbum/index.vue";
 import TabArtist from "@/page/BrowsePage/components/TabArtist/index.vue";
 import TabMV from "@/page/BrowsePage/components/TabMV/index.vue";
 import TabTag from "@/page/BrowsePage/components/TabTag/index.vue";
-import { computed, ref, watch } from "vue";
+import { computed, inject, onMounted, Ref, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import { ScrollAreaViewport } from "radix-vue";
+import { scrollAreaRootKey } from "@/constant/Dependenceinjection.ts";
+import { ContainerRollingUtil } from "@/utils/ContainerRollingUtil.ts";
 
 defineOptions({
   name: "BrowsePage",
@@ -53,19 +56,34 @@ const tabsList = [
   },
 ];
 
+// Rolling distance
+const top = 110;
+
 const router = useRouter();
-const route = useRoute()
+const route = useRoute();
 const tabs = ref();
+
+const scrollAreaRoot =
+  inject<Ref<InstanceType<typeof ScrollAreaViewport> | undefined>>(
+    scrollAreaRootKey,
+  );
 
 watch(tabs, (newVal) => {
   router.push({ name: "BrowsePage", params: { tab: newVal } });
 });
-const defaultValue= computed(()=>{
+const defaultValue = computed(() => {
   if (!(route.params && route.params?.tab)) {
     return undefined;
   }
   return route.params.tab[0];
-})
+});
+
+onMounted(() => {
+  const value = route?.params?.tab?.[0];
+  if (value) {
+    ContainerRollingUtil.scrollTo({ el: scrollAreaRoot?.value, top });
+  }
+});
 </script>
 
 <template>
@@ -77,7 +95,12 @@ const defaultValue= computed(()=>{
       v-model="tabs"
     >
       <ReTabsList class="grid sm:w-full md:w-1/2 grid-cols-6 my-4">
-        <ReTabsTrigger :value="i.value" v-for="i in tabsList" :key="i.value">
+        <ReTabsTrigger
+          :value="i.value"
+          v-for="i in tabsList"
+          :key="i.value"
+          @click="ContainerRollingUtil.scrollTo({ el: scrollAreaRoot, top })"
+        >
           {{ i.label }}
         </ReTabsTrigger>
       </ReTabsList>
