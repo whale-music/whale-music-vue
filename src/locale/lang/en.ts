@@ -14,6 +14,14 @@ export default {
     mv: "MV",
     tag: "Tag",
   },
+  library: {
+    playlist: "Playlist",
+    music: "Music",
+    album: "Album",
+    artist: "Artist",
+    mv: "MV",
+    playHistory: "Play History",
+  },
   settings: {
     settings: "Settings",
     general: "General",

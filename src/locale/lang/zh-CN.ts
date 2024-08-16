@@ -10,9 +10,17 @@ export default {
     playlist: "歌单",
     music: "音乐",
     album: "专辑",
-    artist: "歌手",
+    artist: "艺术家",
     mv: "MV",
     tag: "Tag",
+  },
+  library: {
+    playlist: "歌单",
+    music: "音乐",
+    album: "专辑",
+    artist: "艺术家",
+    mv: "MV",
+    playHistory: "听歌排行",
   },
   settings: {
     settings: "设置",
