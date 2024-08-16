@@ -46,7 +46,7 @@ const userStore = useUserStore();
         <ul class="grid grid-cols-3 gap-4">
           <li
             v-for="i in userStore.like.musics"
-            class="truncate flex gap-2 hover:bg-foreground/20 p-2 rounded-lg transition-colors duration-150 ease-linear"
+            class="truncate flex gap-2 hover:bg-secondary p-2 rounded-lg transition-colors duration-150 ease-linear"
           >
             <Avatar class="size-10 object-cover rounded cursor-pointer">
               <AvatarImage src="https://t.alcy.cc/fj/" alt="@radix-vue" />
