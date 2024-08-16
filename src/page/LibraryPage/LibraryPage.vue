@@ -6,7 +6,7 @@ import {
   ReTabsList,
   ReTabsTrigger,
 } from "@/components/ReTabs";
-import { computed, ref, watch } from "vue";
+import { computed, inject, nextTick, Ref, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import LibraryTabPlayList from "@/page/LibraryPage/components/Tabs/LibraryTabPlayList.vue";
@@ -14,6 +14,8 @@ import LibraryTabArtist from "@/page/LibraryPage/components/Tabs/LibraryTabArtis
 import LibraryTabAlbum from "@/page/LibraryPage/components/Tabs/LibraryTabAlbum.vue";
 import LibraryTabMV from "@/page/LibraryPage/components/Tabs/LibraryTabMV.vue";
 import LibraryTabPlayHistory from "@/page/LibraryPage/components/Tabs/LibraryTabPlayHistory.vue";
+import { ScrollAreaViewport } from "radix-vue";
+import { scrollAreaRootKey } from "@/constant/Dependenceinjection.ts";
 
 defineOptions({
   name: "LibraryPage",
@@ -63,6 +65,19 @@ const defaultValue = computed(() => {
   }
   return route.params.tab[0];
 });
+
+const scrollAreaRoot =
+  inject<Ref<InstanceType<typeof ScrollAreaViewport>>>(scrollAreaRootKey);
+
+const goToTab = () => {
+  nextTick(() => {
+    const viewport = scrollAreaRoot?.value?.viewportElement;
+    viewport?.scrollTo({
+      top: 375,
+      behavior: "smooth",
+    });
+  });
+};
 </script>
 
 <template>
@@ -74,7 +89,12 @@ const defaultValue = computed(() => {
       v-model="tabs"
     >
       <ReTabsList class="flex justify-start w-full my-4">
-        <ReTabsTrigger :value="i.value" v-for="i in tabsList" :key="i.value">
+        <ReTabsTrigger
+          :value="i.value"
+          v-for="i in tabsList"
+          @click="goToTab"
+          :key="i.value"
+        >
           {{ i.label }}
         </ReTabsTrigger>
       </ReTabsList>
