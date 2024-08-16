@@ -19,7 +19,7 @@ const routes = [
     },
     {
         name: 'LibraryPage',
-        path: '/library',
+        path: '/library/:tab(.*)*',
         component: ()=>import('@/page/LibraryPage/LibraryPage.vue')
     },
     {
