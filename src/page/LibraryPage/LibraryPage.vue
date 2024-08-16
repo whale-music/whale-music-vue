@@ -6,7 +6,7 @@ import {
   ReTabsList,
   ReTabsTrigger,
 } from "@/components/ReTabs";
-import { computed, inject, nextTick, Ref, ref, watch } from "vue";
+import { computed, inject, Ref, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import LibraryTabPlayList from "@/page/LibraryPage/components/Tabs/LibraryTabPlayList.vue";
@@ -16,6 +16,7 @@ import LibraryTabMV from "@/page/LibraryPage/components/Tabs/LibraryTabMV.vue";
 import LibraryTabPlayHistory from "@/page/LibraryPage/components/Tabs/LibraryTabPlayHistory.vue";
 import { ScrollAreaViewport } from "radix-vue";
 import { scrollAreaRootKey } from "@/constant/Dependenceinjection.ts";
+import { ContainerRollingUtil } from "@/utils/ContainerRollingUtil.ts";
 
 defineOptions({
   name: "LibraryPage",
@@ -67,17 +68,9 @@ const defaultValue = computed(() => {
 });
 
 const scrollAreaRoot =
-  inject<Ref<InstanceType<typeof ScrollAreaViewport>>>(scrollAreaRootKey);
-
-const goToTab = () => {
-  nextTick(() => {
-    const viewport = scrollAreaRoot?.value?.viewportElement;
-    viewport?.scrollTo({
-      top: 375,
-      behavior: "smooth",
-    });
-  });
-};
+  inject<Ref<InstanceType<typeof ScrollAreaViewport> | undefined>>(
+    scrollAreaRootKey,
+  );
 </script>
 
 <template>
@@ -92,7 +85,9 @@ const goToTab = () => {
         <ReTabsTrigger
           :value="i.value"
           v-for="i in tabsList"
-          @click="goToTab"
+          @click="
+            ContainerRollingUtil.scrollTo({ el: scrollAreaRoot, top: 375 })
+          "
           :key="i.value"
         >
           {{ i.label }}
