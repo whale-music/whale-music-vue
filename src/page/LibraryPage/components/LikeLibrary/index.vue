@@ -25,25 +25,25 @@ const userStore = useUserStore();
     </div>
     <div class="h-60 flex gap-x-6 my-8">
       <div
-        class="bg-primary/10 basis-1/3 h-60 rounded-lg px-6 py-4 flex flex-col"
+        class="bg-primary/10 md:basis-1/3 basis-full md:h-60 w-full rounded-lg px-6 py-4 flex flex-col"
       >
         <span class="text-lg flex-1 text-primary">
           {{ userStore.randomLikeLyric }}
         </span>
         <div class="flex justify-between items-center">
-          <div class="flex flex-col gap-1">
+          <div class="flex flex-col gap-1 basis-3/4">
             <h2 class="text-3xl font-bold text-primary">{{ $t('settings.myLikeMusic') }}</h2>
             <span class="text-base">{{ $t('settings.likeCount',[userStore.like.count]) }}</span>
           </div>
           <div
-            class="rounded-full h-full bg-primary text-primary-foreground aspect-square flex justify-center items-center cursor-pointer"
+            class="rounded-full md:basis-1/5 basis-1/6 bg-primary text-primary-foreground aspect-square flex justify-center items-center cursor-pointer"
           >
             <SolarPlayBold class="size-5/12" />
           </div>
         </div>
       </div>
-      <div class="basis-2/3 h-60">
-        <ul class="grid grid-cols-3 gap-4">
+      <div class="md:basis-2/3 md:block hidden h-60">
+        <ul class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
           <li
             v-for="i in userStore.like.musics"
             class="truncate flex gap-2 hover:bg-secondary p-2 rounded-lg transition-colors duration-150 ease-linear"
