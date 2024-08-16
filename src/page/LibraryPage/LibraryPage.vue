@@ -92,7 +92,7 @@ onMounted(() => {
       class="w-full"
       v-model="tabs"
     >
-      <ReTabsList class="flex justify-start w-full my-4">
+      <ReTabsList class="md:flex justify-start w-full my-4 hidden">
         <ReTabsTrigger
           :value="i.value"
           v-for="i in tabsList"
