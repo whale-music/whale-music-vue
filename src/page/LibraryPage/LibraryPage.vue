@@ -73,13 +73,8 @@ const defaultValue = computed(() => {
       class="w-full"
       v-model="tabs"
     >
-      <ReTabsList class="flex justify-start w-full my-4 gap-4 p-0">
-        <ReTabsTrigger
-          :value="i.value"
-          v-for="i in tabsList"
-          :key="i.value"
-          class="transition-colors duration-150 hover:text-foreground hover:bg-muted/75 px-4 font-semibold text-base"
-        >
+      <ReTabsList class="flex justify-start w-full my-4">
+        <ReTabsTrigger :value="i.value" v-for="i in tabsList" :key="i.value">
           {{ i.label }}
         </ReTabsTrigger>
       </ReTabsList>
