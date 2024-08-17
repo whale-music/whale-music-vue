@@ -2,7 +2,24 @@
 
 /** @type {import("prettier").Config} */
 export default {
-    plugins: ["prettier-plugin-tailwindcss"],
+    plugins: [
+        // 导入语句排序插件
+        "@trivago/prettier-plugin-sort-imports",
+        // tailwindcss sort
+        "prettier-plugin-tailwindcss",
+    ],
+
+    /* @trivago/prettier-plugin-sort-imports */
+    // import 排序配置
+    importOrder: ["^vue(.*)$", "radix-vue", "^@/components/(.*)$", "<THIRD_PARTY_MODULES>", "^@/utils/(.*)$", "^@/constant/(.*)$", "^[./]"],
+    importOrderSeparation: true,
+    importOrderSortSpecifiers: true,
+    importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"], // 支持的语法特性
+    importOrderBuiltinModulesToTop: true, // 将内置模块置顶
+    importOrderCombineTypeAndValueImports: true, // 将类型导入和普通导入合并
+    importOrderGroupNamespaceSpecifiers: true, // 统一分组的导入放在同一行
+    /* @trivago/prettier-plugin-sort-imports */
+
     // 缩进
     tabWidth: 4,
     // 缩进方式
